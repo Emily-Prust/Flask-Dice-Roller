@@ -44,5 +44,5 @@ def private_roll():
             'note': {'note': note},
             'roll': {'amount:': amount, 'dice_number': dice_number, 'roll_result': roll(amount, dice_number)}
         })
-        return redirect('/private_roll')
+        return render_template('private_roll.html', title='Private Roll', rolls=rolls, form=form)
     return render_template('private_roll.html', title='Private Roll', rolls=rolls, form=form)
