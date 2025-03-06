@@ -11,7 +11,18 @@
             <a href="{{ url_for('private_roll') }}">Private Roll  </a>
             <hr>
         </div>
-        
+
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <h3>Flashed message(s):</h3>
+        <ul>
+            {% for message in messages %}
+           <li>{{ message }}</li>
+        {% endfor %}
+        </ul>
+        <hr>
+        {% endif %}
+        {% endwith %}
         {% block content %}
         {% endblock %}
         </div>

@@ -1,6 +1,7 @@
-from flask import render_template, redirect
+from flask import render_template, flash, redirect
 from app import app
 from app.forms import RollForm
+from app.roll import roll
 
 
 @app.route('/')
@@ -36,5 +37,12 @@ def private_roll():
     ]
     form = RollForm()
     if form.validate_on_submit():
+        note = form.note.data
+        amount = form.amount.data
+        dice_number = form.dice_number.data
+        rolls.append({
+            'note': {'note': note},
+            'roll': {'amount:': amount, 'dice_number': dice_number, 'roll_result': roll(amount, dice_number)}
+        })
         return redirect('/private_roll')
     return render_template('private_roll.html', title='Private Roll', rolls=rolls, form=form)

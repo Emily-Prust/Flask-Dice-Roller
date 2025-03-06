@@ -4,7 +4,7 @@ from wtforms.validators import DataRequired
 
 
 class RollForm(FlaskForm):
-    note = StringField('Note')
+    note = StringField('Note', validators=[DataRequired()])
     amount = IntegerField('Amount', validators=[DataRequired()])
     dice_number = IntegerField('Dice Number', validators=[DataRequired()])
     submit = SubmitField('Roll!')
