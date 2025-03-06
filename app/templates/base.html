@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <title>{{ title }} - FDR</title>
+    </head>
+    <body>
+        <div style="padding: 15%">
+        <div>
+            <p>Flask Dice Roller</p>
+            <a href="{{ url_for('index') }}">Home  </a><br>
+            <a href="{{ url_for('private_roll') }}">Private Roll  </a>
+            <hr>
+        </div>
+        
+        {% block content %}
+        {% endblock %}
+        </div>
+    </body>
+</html>

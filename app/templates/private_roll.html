@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Private Roll</h1>
+<form action="" method="post" novalidate>
+    {{ form.hidden_tag() }}
+    <p>
+        {{ form.note.label }}<br>
+        {{ form.note(size=32) }}
+    </p>
+    <p>
+        {{ form.amount.label }}<br>
+        {{ form.amount() }}
+    </p>
+    <p>
+        {{ form.dice_number.label }}<br>
+        {{ form.dice_number() }}
+    </p>
+    <p>
+        {{ form.submit() }}
+    </p>
+    <div>
+
+    <hr>
+
+    <h3>Results:</h3>
+    {% for roll in rolls %}
+    <div><p>
+        <b>{{ roll.note.note }}</b> Rolled {{ roll.roll.amount }} d{{ roll.roll.dice_number }}(s).
+        <i>Roll result: {{ roll.roll.roll_result }}.</i>
+    </p></div>
+    {% endfor %}
+    </div>
+</form>
+{% endblock %}
