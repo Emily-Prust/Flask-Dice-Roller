@@ -1,7 +1,8 @@
 from flask import render_template, flash, redirect
-from app import app
+from app import app, db
+import sqlalchemy as sa
 from app.forms import RollForm
-from app.roll import roll
+from app.models import Roll
 
 
 @app.route('/')
@@ -25,24 +26,13 @@ def index():
 
 @app.route('/private_roll', methods=['GET', 'POST'])
 def private_roll():
-    rolls = [
-        {
-            'note': {'note': 'Roll for hit'},
-            'roll': {'amount': 2, 'dice_number': 6, 'roll_result': '1, 1'}
-        },
-        {
-            'note': {'note': 'Roll for damage'},
-            'roll': {'amount': 6, 'dice_number': 18, 'roll_result': '2, 16, 6, 6, 1, 13'}
-        }
-    ]
     form = RollForm()
     if form.validate_on_submit():
-        note = form.note.data
-        amount = form.amount.data
-        dice_number = form.dice_number.data
-        rolls.append({
-            'note': {'note': note},
-            'roll': {'amount:': amount, 'dice_number': dice_number, 'roll_result': roll(amount, dice_number)}
-        })
-        return render_template('private_roll.html', title='Private Roll', rolls=rolls, form=form)
-    return render_template('private_roll.html', title='Private Roll', rolls=rolls, form=form)
+        new_roll = Roll(note=form.note.data, amount=form.amount.data,
+                        dice_number=form.dice_number.data)
+        new_roll.generate_roll(form.amount.data,
+                               form.dice_number.data)
+        db.session.add(new_roll)
+        db.session.commit()
+        return redirect('/private_roll')
+    return render_template('private_roll.html', title='Private Roll', form=form)

@@ -7,14 +7,23 @@
     <p>
         {{ form.note.label }}<br>
         {{ form.note(size=32) }}
+        {% for error in form.note.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
     </p>
     <p>
         {{ form.amount.label }}<br>
         {{ form.amount() }}
+        {% for error in form.amount.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
     </p>
     <p>
         {{ form.dice_number.label }}<br>
         {{ form.dice_number() }}
+        {% for error in form.dice_number.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
     </p>
     <p>
         {{ form.submit() }}
