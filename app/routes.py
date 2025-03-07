@@ -26,6 +26,8 @@ def index():
 
 @app.route('/private_roll', methods=['GET', 'POST'])
 def private_roll():
+    query = sa.select(Roll)
+    rolls = db.session.scalars(query).all()
     form = RollForm()
     if form.validate_on_submit():
         new_roll = Roll(note=form.note.data, amount=form.amount.data,
@@ -35,4 +37,4 @@ def private_roll():
         db.session.add(new_roll)
         db.session.commit()
         return redirect('/private_roll')
-    return render_template('private_roll.html', title='Private Roll', form=form)
+    return render_template('private_roll.html', title='Private Roll', form=form, rolls=rolls)
