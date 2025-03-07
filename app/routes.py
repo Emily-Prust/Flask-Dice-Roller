@@ -8,24 +8,14 @@ from app.models import Roll
 @app.route('/')
 @app.route('/index')
 def index():
-    # Mock data
-    user = {'username': 'John'}
-    rolls = [
-        {
-            'author': {'username': 'Snake Eyes Bert'},
-            'roll': {'amount': 2, 'dice_number': 6, 'roll_result': '1, 1'}
-        },
-        {
-            'author': {'username': 'Phil the Librarian'},
-            'roll': {'amount': 6, 'dice_number': 18, 'roll_result': '2, 16, 6, 6, 1, 13'}
-        }
-    ]
+    query = sa.select(Roll)
+    rolls = db.session.scalars(query).all()
 
-    return render_template('index.html', title='Home', user=user, rolls=rolls)
+    return render_template('index.html', title='Home', rolls=rolls)
 
 
-@app.route('/private_roll', methods=['GET', 'POST'])
-def private_roll():
+@app.route('/roll', methods=['GET', 'POST'])
+def roll():
     query = sa.select(Roll)
     rolls = db.session.scalars(query).all()
     form = RollForm()
@@ -36,5 +26,5 @@ def private_roll():
                                form.dice_number.data)
         db.session.add(new_roll)
         db.session.commit()
-        return redirect('/private_roll')
-    return render_template('private_roll.html', title='Private Roll', form=form, rolls=rolls)
+        return redirect('/roll')
+    return render_template('roll.html', title='Roll', form=form, rolls=rolls)

@@ -3,10 +3,12 @@
 {% block content %}
     <h1>Welcome to Flask Dice Roller!</h1>
     <hr>
-    {% for roll in rolls %}
+    <div>
+    {% for roll in rolls[::-1] %}
     <div><p>
-        {{ roll.author.username }} rolled {{ roll.roll.amount }} d{{ roll.roll.dice_number }}(s).<br>
-        <i>Roll result: {{ roll.roll.roll_result }}.</i>
+        <b>{{ roll.note }}</b> Rolled {{ roll.amount }} d{{ roll.dice_number }}(s).
+        <i>Roll result: {{ roll.roll_result }}.</i>
     </p></div>
     {% endfor %}
+    </div>
 {% endblock %}
