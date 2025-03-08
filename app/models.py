@@ -1,3 +1,4 @@
+from datetime import datetime, timezone
 from typing import Optional
 import sqlalchemy as sa
 import sqlalchemy.orm as so
@@ -7,6 +8,8 @@ from app.roll import roll
 
 class Roll(db.Model):
     id: so.Mapped[int] = so.mapped_column(primary_key=True)
+    timestamp: so.Mapped[datetime] = so.mapped_column(
+        index=True, default=lambda: datetime.now(timezone.utc))
     note: so.Mapped[str] = so.mapped_column(
         sa.String(64), index=True)
     amount: so.Mapped[int] = so.mapped_column()
