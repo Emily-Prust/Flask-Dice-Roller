@@ -3,14 +3,6 @@ them to a database.
 
 Created as I was curious about how a web application communicates with a database.
 
-!!! If the website breaks, it is likely that something has gone wrong with the
-    database. The easiest way to resolve these issues is to do the following:
-
-    $ flask db downgrade
-    $ flask db upgrade
-
-    WARNING: this will delete all previous entries.
-
 
 INSTRUCTIONS:
 
