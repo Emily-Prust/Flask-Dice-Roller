@@ -3,9 +3,8 @@ them to a database.
 
 Created as I was curious about how a web application communicates with a database.
 
-!!! As there is no input verification on the dice amount/dice number inputs,
-    inputs like negative values will require the database be cleaned, the
-    easiest way to do this is with:
+!!! If the website breaks, it is likely that something has gone wrong with the
+    database. The easiest way to resolve these issues is to do the following:
 
     $ flask db downgrade
     $ flask db upgrade
