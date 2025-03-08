@@ -7,8 +7,8 @@ from app.roll import roll
 
 class Roll(db.Model):
     id: so.Mapped[int] = so.mapped_column(primary_key=True)
-    note: so.Mapped[str] = so.mapped_column(sa.String(64), index=True,
-                                            unique=True)
+    note: so.Mapped[str] = so.mapped_column(
+        sa.String(64), index=True)
     amount: so.Mapped[int] = so.mapped_column()
     dice_number: so.Mapped[int] = so.mapped_column()
     roll_result: so.Mapped[str] = so.mapped_column(sa.String(999))
