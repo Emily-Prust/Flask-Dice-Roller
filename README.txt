@@ -1,9 +1,10 @@
-Files missing from Git:
-    .DS_Store
-    config.py
-    venv/
+A simple Flask application that generates and displays random numbers, saving
+them to a database.
 
-    --> a template for config.py should be included\
-    the commands to generate the db should be included here
-    alongside other necessary commands to run such as 
-    flask run, flask shell
+Created as I was curious about how a web application communicates with a database.
+
+
+INSTRUCTIONS:
+
+
+For a demonstration, look at 
