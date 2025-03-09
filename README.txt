@@ -15,6 +15,9 @@ $ git clone https://github.com/Emily-Prust/Flask-Dice-Roller.git
 Install requirements
 $ pip install -r requirements.txt
 
+Run
+$ flask db upgrade 
+
 Run the app by using
 $ flask run
 

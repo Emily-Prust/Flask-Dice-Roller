@@ -6,7 +6,8 @@
     <div>
     {% for roll in rolls[::-1] %}
     <div><p>
-        {{ roll.timestamp }} <b>{{ roll.note }}</b> Rolled {{ roll.amount }} d{{ roll.dice_number }}(s).
+        <b>{{ roll.note }}</b> <small>{{ moment(roll.timestamp).fromNow() }}</small><br>
+        Rolled {{ roll.amount }} d{{ roll.dice_number }}(s).
         <i>Roll result: {{ roll.roll_result }}.</i>
     </p></div>
     {% endfor %}
