@@ -9,6 +9,9 @@ INSTRUCTIONS:
 Set up virtual environment
 $ python3 -m venv venv 
 
+Activate virtual environment
+$ source venv/bin/activate
+
 Clone this repo
 $ git clone https://github.com/Emily-Prust/Flask-Dice-Roller.git 
 
